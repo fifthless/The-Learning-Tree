@@ -3,7 +3,7 @@ let modInfo = {
 	id: "school",
 	author: "fifthless",
 	pointsName: "word",
-	modFiles: ["layers.js", "tree.js"],
+	modFiles: ["Layer/k.js","Layer/m.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -19,6 +19,13 @@ let VERSION = {
 
 let changelog = `<h1>Changelog:</h1><br>
 <br>
+
+	<h3>v0.3</h3><br>
+		-balanced the game to 1000 word<br>
+		-Added some upgrade<br>
+		-fixed some bugs<br>
+		<br>
+
 	<h3>v0.3</h3><br>
 		-balanced the game to 1000 word<br>
 		-Added some upgrade<br>
