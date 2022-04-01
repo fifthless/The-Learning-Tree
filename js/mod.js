@@ -1,8 +1,8 @@
 let modInfo = {
-	name: "The Learning Tree",
+	name: "The Library Tree",
 	id: "school",
 	author: "fifthless",
-	pointsName: "word",
+	pointsName: "Read Books",
 	modFiles: ["Layer/k.js","Layer/m.js", "tree.js"],
 
 	discordName: "",
@@ -13,22 +13,32 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.3",
-	name: "Learn",
+	num: "0.5.1 Welcome to Jake's Library",
+	name: "",
 }
 
-let changelog = `<h1>Changelog:</h1><br>
+let changelog = `<h1><span style="color:blue">Changelog:</span></h1><br>
 <br>
 
+	<h3>v0.5.1</h3><br>
+		-Remove some useless stuff<br>
+		-fixed some Upgrade bugs<br>
+		<br>
+
+	<h3>v0.5</h3><br>
+		-balanced the game to 5000 read book<br>
+		-Added some upgrade<br>
+		-Clean up the code<br>
+		<br>
+
 	<h3>v0.4</h3><br>
-		-balanced the game to 10000 word<br>
 		-Added some upgrade<br>
 		-Added a new LAYER "Mind Strengthen"
 		-fixed some bugs<br>
 		<br>
 
 	<h3>v0.3</h3><br>
-		-balanced the game to 1000 word<br>
+		-balanced the game to 1000 read book<br>
 		-Added some upgrade<br>
 		-fixed some bugs<br>
 		<br>
@@ -63,6 +73,7 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade("m", 11)) gain = gain.times(upgradeEffect("m", 12))
 	if (hasUpgrade("k", 12)) gain = gain.times(2)
 	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
 	return gain
@@ -78,7 +89,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("1000"))
+	return player.points.gte(new Decimal("5000"))
 }
 
 

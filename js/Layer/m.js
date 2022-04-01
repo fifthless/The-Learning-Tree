@@ -9,7 +9,7 @@ addLayer("m",{
 
     color: "#F5B7B1",
 
-    requires: new Decimal(10), // Can be a function that takes requirement increases into account
+    requires: new Decimal(15), // Can be a function that takes requirement increases into account
 
     resource: "Mind Strengthen", // Name of prestige currency
         baseResource: "knowledge", // Name of resource prestige is based on
@@ -35,6 +35,32 @@ hotkeys: [
     {key: "m", description: "m: Reset for Mind Strengthen", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
 ],
 
-layerShown(){return hasUpgrade("k",21)},
+    layerShown(){ 
+        if(player[this.layer].points>0){return true} 
+        return hasMilestone("k",1)},
+
+    upgrades: {
+
+        11: {
+                title: "Keeping Mind",
+                description: "You can keep this layer even if you make a “Mind Strengthen” reset",
+                cost: new Decimal(0),
+                unlocked() { return player[this.layer].unlocked }, // The upgrade is only visible when this is true
+                
+            },
+
+        12: {
+                title: "Opened-Mind",
+                description: "Mind Strengthen start to effect word gain",
+                cost: new Decimal(1),
+                unlocked() { return hasUpgrade("m",11)}, // The upgrade is only visible when this is true
+                effect() {
+                    return player[this.layer].points.add(1).pow(0.5)
+                },
+                effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },
+        
+
+    },
 
 })

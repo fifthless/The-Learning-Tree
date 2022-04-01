@@ -14,7 +14,7 @@ addLayer("k", {
     
     resource: "Knowledge", // Name of prestige currency
     
-    baseResource: "word", // Name of resource prestige is based on
+    baseResource: "Read Book", // Name of resource prestige is based on
 
     baseAmount() {return player.points}, // Get the current amount of baseResource
     
@@ -35,30 +35,38 @@ addLayer("k", {
     row: 0, // Row the layer is in on the tree (0 is the first row)
     
     hotkeys: [
-        {key: "k", description: "k: Reset for knowledge points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
+        {key: "k", description: "k: Reset for knowledge", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
     
     layerShown(){return true},
+
+    milestones: {
+        1: {
+            requirementDescription: "<b>Mind breaking</b><br>20 Knowledge",
+            effectDescription: "Lets you reset for “Mind Strengthen”",
+            done() { return player.k.points.gte(20) }
+            }
+        },
     
     upgrades: {
 
         11: {
             title: "Reading",
-            description: "You can learn 1 word every second",
+            description: "You can Read a book per second",
             cost: new Decimal(1),
             unlocked() { return player[this.layer].unlocked }, // The upgrade is only visible when this is true
         },
 
         12:{
             title:"SPEED!",
-            description:"“Reading” now give twice more words",
+            description:"“Reading” now read twice amount of book per sec",
             cost: new Decimal(1),
             unlocked(){ return hasUpgrade("k",11)},
         },
 
         13:{
             title:"Reading with skill",
-            description:"Knowledge points increase your word learned every second",
+            description:"Knowledge increase your read book every second",
             cost: new Decimal(5),
             unlocked(){ return hasUpgrade("k",12)},
             effect() {
@@ -69,7 +77,7 @@ addLayer("k", {
         
         14:{
             title:"Skillful",
-            description:"Words increase knowledge points gain",
+            description:"Read Book increase knowledge points gain",
             cost: new Decimal(15),
             unlocked(){ return hasUpgrade("k",13)},
             effect() {
@@ -78,19 +86,7 @@ addLayer("k", {
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
 
-        21:{
-            title:"Mind breaking",
-            description:"Lets you available to reset for “Mind Strengthen”",
-            cost: new Decimal(50),
-        },
-
-    milestones: {
-        0: {
-            requirementDescription: "100 Knowledge",
-            effectDescription: "Lets you reset for “Mind Strengthen”",
-            done() { return player[this.layer].points.gte(100) }
-            }
-        }
+    
     },
 })
 
