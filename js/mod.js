@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "The School Tree",
+	name: "The Learning Tree",
 	id: "school",
 	author: "fifthless",
 	pointsName: "word",
@@ -13,14 +13,26 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.1",
-	name: "Learning",
+	num: "0.3",
+	name: "Learn",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+<br>
+	<h3>v0.3</h3><br>
+		-balanced the game to 1000 word<br>
+		-Added some upgrade<br>
+		-fixed some bugs<br>
+		<br>
+
+	<h3>v0.2</h3><br>
+		-Added A Layer<br>
+		-Added some update<br>
+		<br>
+
 	<h3>v0.1</h3><br>
-		- Added random idea.<br>
-		- Added stuff.`
+		- Added random idea<br>
+		- Added stuff`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
@@ -44,6 +56,7 @@ function getPointGen() {
 
 	let gain = new Decimal(1)
 	if (hasUpgrade("k", 12)) gain = gain.times(2)
+	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
 	return gain
 }
 
@@ -57,7 +70,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("1000"))
 }
 
 
