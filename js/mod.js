@@ -20,9 +20,10 @@ let VERSION = {
 let changelog = `<h1>Changelog:</h1><br>
 <br>
 
-	<h3>v0.3</h3><br>
-		-balanced the game to 1000 word<br>
+	<h3>v0.4</h3><br>
+		-balanced the game to 10000 word<br>
 		-Added some upgrade<br>
+		-Added a new LAYER "Mind Strengthen"
 		-fixed some bugs<br>
 		<br>
 
