@@ -1,6 +1,6 @@
-addLayer("p", {
+addLayer("k", {
     name: "knowledge", // This is optional, only used in a few places, If absent it just uses the layer id.
-    symbol: "P", // This appears on the layer's node. Default is the id with the first letter capitalized
+    symbol: "K", // This appears on the layer's node. Default is the id with the first letter capitalized
     position: 0, // Horizontal position within a row. By default it uses the layer id and sorts in alphabetical order
     startData() { return {
         unlocked: true,
@@ -24,5 +24,24 @@ addLayer("p", {
     hotkeys: [
         {key: "k", description: "k: Reset for knowledge points", onPress(){if (canReset(this.layer)) doReset(this.layer)}},
     ],
-    layerShown(){return true}
+    layerShown(){return true},
+    
+    upgrades: {
+
+        11: {
+            title: "Reading",
+            description: "You can learn 1 word every second.",
+            cost: new Decimal(1),
+            unlocked() { return player[this.layer].unlocked }, // The upgrade is only visible when this is true
+        },
+
+        12:{
+            title:"SPEED!",
+            description:"Reading speed increase a bit",
+            cost: new Decimal(1),
+            unlocked(){ return hasUpgrade("k",11)}
+
+
+        }
+    },
 })

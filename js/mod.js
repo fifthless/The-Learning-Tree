@@ -1,7 +1,7 @@
 let modInfo = {
 	name: "The School Tree",
-	id: "mymod",
-	author: "nobody",
+	id: "school",
+	author: "fifthless",
 	pointsName: "word",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -34,7 +34,7 @@ function getStartPoints(){
 
 // Determines if it should show points/sec
 function canGenPoints(){
-	return true
+	return hasUpgrade("k",11)
 }
 
 // Calculate points/sec!
@@ -43,6 +43,7 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
+	if (hasUpgrade("k", 12)) gain = gain.times(2)
 	return gain
 }
 
