@@ -1,5 +1,5 @@
 let modInfo = {
-	name: "The Library Tree",
+	name: "The Portal Tree",
 	id: "school",
 	author: "fifthless",
 	pointsName: "Read Books",
