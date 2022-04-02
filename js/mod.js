@@ -3,11 +3,11 @@ let modInfo = {
 	id: "school",
 	author: "fifthless",
 	pointsName: "Read Books",
-	modFiles: ["Layer/knowledge.js","Layer/mind_strengthen.js", "tree.js"],
+	modFiles: ["Layer/knowledge.js","Layer/mind_strengthen.js", "tree.js","Layer/draw.js"],
 
 	discordName: "",
 	discordLink: "",
-	initialStartPoints: new Decimal (10), // Used for hard resets and new players
+	initialStartPoints: new Decimal (100000000), // Used for hard resets and new players
 	offlineLimit: 1,  // In hours
 }
 
@@ -79,10 +79,12 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	if (hasUpgrade("m", 11)) gain = gain.times(upgradeEffect("m", 12))
 	if (hasUpgrade("k", 12)) gain = gain.times(2)
 	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
-	if (hasUpgrade('m', 14)) gain = gain.times(upgradeEffect('m', 14))
+	if (hasUpgrade("m", 11)) gain = gain.times(upgradeEffect("m", 11))
+	if (hasUpgrade('m', 13)) gain = gain.times(upgradeEffect('m', 13))
+	if (hasUpgrade('d', 11)) gain = gain.times(upgradeEffect('d', 11))
+
 	return gain
 }
 

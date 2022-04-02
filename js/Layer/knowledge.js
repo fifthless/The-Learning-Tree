@@ -91,5 +91,6 @@ addLayer("k", {
     
     },
 
-    autoUpgradeif (hasMilestone('m', 1)) {return true}
-
+    autoUpgrade() {if (hasMilestone("m",1)) return true}
+    
+})
