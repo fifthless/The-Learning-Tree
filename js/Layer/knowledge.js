@@ -26,6 +26,8 @@ addLayer("k", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
         if (hasUpgrade('k', 14)) mult = mult.times(upgradeEffect('k', 14))
+        if (hasUpgrade('m', 13)) mult = mult.times(upgradeEffect('m', 13))
+        if (hasUpgrade('m', 14)) mult = mult.times(upgradeEffect('m', 14))
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -42,8 +44,8 @@ addLayer("k", {
 
     milestones: {
         1: {
-            requirementDescription: "<b>Mind breaking</b><br>20 Knowledge",
-            effectDescription: "Lets you reset for “Mind Strengthen”",
+            requirementDescription: "<b>Mind Breaking</b><br>20 knowledge",
+            effectDescription: "Lets you prestige for Mind Strengthen",
             done() { return player.k.points.gte(20) }
             }
         },
@@ -88,5 +90,6 @@ addLayer("k", {
 
     
     },
-})
+
+    autoUpgradeif (hasMilestone('m', 1)) {return true}
 

@@ -36,8 +36,16 @@ hotkeys: [
 ],
 
     layerShown(){ 
-        if(player[this.layer].points>0){return true} 
+        if(hasUpgrade ("m",11)){return true}
         return hasMilestone("k",1)},
+
+     milestones: {
+        1: {
+                requirementDescription: "<b>AutoKnown</b><br>10 Mind Strengthen",
+                effectDescription: "Lets you autobuy knowledge upgrade",
+                done() { return player.m.points.gte(10) }
+            }
+    },
 
     upgrades: {
 
@@ -51,7 +59,7 @@ hotkeys: [
 
         12: {
                 title: "Opened-Mind",
-                description: "Mind Strengthen start to effect word gain",
+                description: "Mind Strengthen start to effect read book gain",
                 cost: new Decimal(1),
                 unlocked() { return hasUpgrade("m",11)}, // The upgrade is only visible when this is true
                 effect() {
@@ -59,6 +67,30 @@ hotkeys: [
                 },
                 effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
             },
+
+        13: {
+                title: "Known",
+                description: "Mind Strengthen start to effect knowledge gain",
+                cost: new Decimal(1),
+                unlocked() { return hasUpgrade("m",12)}, // The upgrade is only visible when this is true
+                effect() {
+                    return player[this.layer].points.add(1).pow(0.4)
+                },
+                effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },
+
+        14: {
+                title: "Minder",
+                description: "Mind Strengthen effect knowledge gain and read book gain <b>AGAIN</b>",
+                cost: new Decimal(1),
+                unlocked() { return hasUpgrade("m",13)}, // The upgrade is only visible when this is true
+                effect() {
+                    return player[this.layer].points.add(1).pow(0.7)
+                },
+                effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+            },  
+            
+        
         
 
     },

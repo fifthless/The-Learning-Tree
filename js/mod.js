@@ -3,7 +3,7 @@ let modInfo = {
 	id: "school",
 	author: "fifthless",
 	pointsName: "Read Books",
-	modFiles: ["Layer/k.js","Layer/m.js", "tree.js"],
+	modFiles: ["Layer/knowledge.js","Layer/mind_strengthen.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
@@ -13,12 +13,18 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.5.1 Welcome to Jake's Library",
+	num: "0.6 Welcome to Jake's Library",
 	name: "",
 }
 
 let changelog = `<h1><span style="color:blue">Changelog:</span></h1><br>
 <br>
+
+	<h3>v0.6</h3><br>
+		-added some Upgrade and milestone for "MS"<br>
+		-fixed some Upgrade bugs<br>
+		-balenced the game to 1000000<br>
+		<br>
 
 	<h3>v0.5.1</h3><br>
 		-Remove some useless stuff<br>
@@ -76,6 +82,7 @@ function getPointGen() {
 	if (hasUpgrade("m", 11)) gain = gain.times(upgradeEffect("m", 12))
 	if (hasUpgrade("k", 12)) gain = gain.times(2)
 	if (hasUpgrade('k', 13)) gain = gain.times(upgradeEffect('k', 13))
+	if (hasUpgrade('m', 14)) gain = gain.times(upgradeEffect('m', 14))
 	return gain
 }
 
@@ -89,7 +96,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("5000"))
+	return player.points.gte(new Decimal("1000000"))
 }
 
 
